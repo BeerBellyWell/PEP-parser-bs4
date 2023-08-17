@@ -2,9 +2,13 @@ import logging
 
 from requests import RequestException
 from exceptions import ParserFindTagException
+from requests_cache import CachedSession
+from bs4 import BeautifulSoup
+from requests_cache.models.response import CachedResponse
+from bs4.element import Tag
 
 
-def get_response(session, url):
+def get_response(session: 'CachedSession', url: str) -> 'CachedResponse':
     '''Перехват ошибки RequestException.'''
     try:
         response = session.get(url)
@@ -18,7 +22,7 @@ def get_response(session, url):
         )
 
 
-def find_tag(soup, tag, attrs=None):
+def find_tag(soup: 'BeautifulSoup', tag: str, attrs: dict = None) -> 'Tag':
     '''Перехват ошибкт поиска тегов'''
     searched_tag = soup.find(tag, attrs=(attrs or {}))
     if searched_tag is None:

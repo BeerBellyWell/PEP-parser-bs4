@@ -15,7 +15,7 @@ from outputs import control_output
 from utils import get_response, find_tag
 
 
-def whats_new(session: 'requests_cache.session.CachedSession') -> list:
+def whats_new(session: 'requests_cache.CachedSession') -> list:
     whats_new_url = urljoin(MAIN_DOC_URL, 'whatsnew/')
     response = get_response(session, whats_new_url)
 
@@ -49,7 +49,7 @@ def whats_new(session: 'requests_cache.session.CachedSession') -> list:
     return results
 
 
-def latest_versions(session: 'requests_cache.session.CachedSession') -> list:
+def latest_versions(session: 'requests_cache.CachedSession') -> list:
     response = get_response(session, MAIN_DOC_URL)
     if response is None:
         return
@@ -82,7 +82,7 @@ def latest_versions(session: 'requests_cache.session.CachedSession') -> list:
     return results
 
 
-def download(session: 'requests_cache.session.CachedSession') -> None:
+def download(session: 'requests_cache.CachedSession') -> None:
     downloads_url = urljoin(MAIN_DOC_URL, 'download.html')
     response = get_response(session, downloads_url)
     if response is None:
@@ -109,7 +109,7 @@ def download(session: 'requests_cache.session.CachedSession') -> None:
     logging.info(f'Архив был загружен и сохранён: {archive_path}')
 
 
-def pep(session: 'requests_cache.session.CachedSession') -> list:
+def pep(session: 'requests_cache.CachedSession') -> list:
     response = get_response(session, PEP_DOC_URL)
     if response is None:
         return
