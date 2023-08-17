@@ -15,5 +15,5 @@
     `pip install -r requirements.txt`
 + запускаем парсер
 `cd src` переходим в директорию с файлом main.py
-`python main.py pep`
+`python main.py pep -o file`
 Готово
