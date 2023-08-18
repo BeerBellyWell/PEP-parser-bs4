@@ -66,11 +66,10 @@ def latest_versions(session: 'requests_cache.CachedSession') -> list:
         raise Exception('Ничего не нашлось')
 
     results = [('Ссылка на документацию', 'Версия', 'Статус')]
-    pattern = LATEST_VERSION_PATTERN
 
     for a_tag in a_tags:
         link = a_tag['href']
-        text_match = re.search(pattern, a_tag.text)
+        text_match = re.search(LATEST_VERSION_PATTERN, a_tag.text)
         if text_match is not None:
             version, status = text_match.groups()
         else:

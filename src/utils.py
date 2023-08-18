@@ -6,13 +6,14 @@ from requests_cache import CachedSession
 from bs4 import BeautifulSoup
 from requests_cache.models.response import CachedResponse
 from bs4.element import Tag
+from constants import UTF_8
 
 
 def get_response(session: 'CachedSession', url: str) -> 'CachedResponse':
     '''Перехват ошибки RequestException.'''
     try:
         response = session.get(url)
-        response.encoding = 'utf-8'
+        response.encoding = UTF_8
         return response
 
     except RequestException:
